@@ -5,6 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 
 namespace Bloodlust
 {
@@ -12,6 +16,7 @@ namespace Bloodlust
     class Tile
     {
         Sprite sprite = new Sprite();
+        Texture2D texture = null;
 
         public Vector2 Position
         {
@@ -24,6 +29,11 @@ namespace Bloodlust
             {
                 sprite.position = value;
             }
+        }
+
+        public void Load(ContentManager Content)
+        {
+
         }
 
     }
