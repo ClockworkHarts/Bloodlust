@@ -12,8 +12,16 @@ namespace Bloodlust
 {
     public class GameState : AIE.State
     {
+        public static GameState current;
+
         bool isLoaded = false;
         SpriteFont font = null;
+
+        // 
+        public Texture2D dirtTile;
+        public Texture2D stoneTile;
+        public Texture2D waterTile;
+
         
         public GameState() : base()
         {
@@ -29,10 +37,10 @@ namespace Bloodlust
 
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter) == true)
-            {
-                AIE.StateManager.ChangeState("GAMEOVER");
-            }
+            //if (Keyboard.GetState().IsKeyDown(Keys.Enter) == true)
+            //{
+            //    AIE.StateManager.ChangeState("GAMEOVER");
+            //}
 
         }
 
