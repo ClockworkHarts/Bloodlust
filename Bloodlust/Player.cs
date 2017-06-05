@@ -7,6 +7,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
+
+
 namespace Bloodlust
 {
     class Player
@@ -35,9 +37,41 @@ namespace Bloodlust
 
         }
 
-        public
+        public void Update(float deltaTime)
+        {
+            UpdateInput(deltaTime);
+            sprite.Update(deltaTime);
+        }
 
-       
+        private void UpdateInput(float deltaTime)
+        {
+           if (Keyboard.GetState().IsKeyDown(Keys.W) == true)
+            {
+
+            }
+
+           if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
+            {
+
+            }
+
+           if (Keyboard.GetState().IsKeyDown(Keys.S) == true)
+            {
+
+            }
+
+           if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
+            {
+
+            }
+        
+
+        }
+
+       public void Draw(SpriteBatch spriteBatch)
+        {
+            sprite.Draw(spriteBatch);
+        }
     
      }     
     
