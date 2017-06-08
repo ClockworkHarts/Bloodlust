@@ -12,9 +12,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Bloodlust
 {
-    public enum TileType { Dirt, Stone, Water };
+    
+
     class Tile
     {
+        public enum TileType { Dirt, Stone, Water };
+
         Sprite sprite = new Sprite();
         Texture2D texture = null;
 
@@ -33,7 +36,7 @@ namespace Bloodlust
 
         public void Load(ContentManager Content)
         {
-
+           
         }
 
     }

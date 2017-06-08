@@ -13,28 +13,37 @@ namespace Bloodlust
 {
     class Player
     {
+        GameState gamestate = null;
+
         Sprite sprite = new Sprite();
 
         public Vector2 velocity = Vector2.Zero;
-        public float speed = 0f;
         public Vector2 direction = Vector2.Zero;
+        public Vector2 scale = new Vector2(1, 1);
 
-        public Vector2 position
+        public Vector2 Position
         {
-            set
-            {
-                sprite.position = value;
-            }
-
-            get
-            {
-                return sprite.position;
-            } 
+            set { sprite.position = value; }
+            get { return sprite.position; }
         }
 
         public void Load(ContentManager Content)
         {
+            AnimatedTexture animation = new AnimatedTexture(Vector2.Zero, 0, scale, 1);
+            animation.Load(Content, "tile32", 1, 1);
+            sprite.Add(animation, 0, 0);
+            sprite.colour = Color.Red;
+        }
 
+        public Rectangle Bounds
+        {
+            get { return sprite.Bounds; }
+        }
+
+        public float Radius()
+        {
+            float radius = Math.Min(Bounds.Height, Bounds.Width);
+            return radius;
         }
 
         public void Update(float deltaTime)
@@ -45,26 +54,65 @@ namespace Bloodlust
 
         private void UpdateInput(float deltaTime)
         {
-           if (Keyboard.GetState().IsKeyDown(Keys.W) == true)
-            {
+            bool wasMovingRight = velocity.X > 0;
+            bool wasMovingLeft = velocity.X < 0;
+            bool wasMovingUp = velocity.Y < 0;
+            bool wasMovingDown = velocity.Y > 0;
 
+            Vector2 acceleration = Vector2.Zero;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W) == true)
+            {
+                direction.Y = -100;
+                acceleration.Y = -GameState.acceleration;
+                //add in some code to animated texture and sprite to allow for vertical flipping
+
+            }
+            else if(wasMovingUp == true)
+            {
+                acceleration.Y = GameState.friction;
             }
 
            if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
             {
-
+                direction.X = -100;
+                acceleration.X = -GameState.acceleration;
+                sprite.SetFlipped(true);
+            }
+            else if (wasMovingLeft == true)
+            {
+                acceleration.X = GameState.friction;
             }
 
            if (Keyboard.GetState().IsKeyDown(Keys.S) == true)
             {
-
+                direction.Y = 100;
+                acceleration.Y = GameState.acceleration;
+                // add in some code for vertical flipping
+            }
+            else if (wasMovingDown == true)
+            {
+                acceleration.Y = -GameState.friction;
             }
 
            if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
-
+                direction.X = 100;
+                acceleration.X = GameState.acceleration;
+                sprite.SetFlipped(false);
             }
-        
+            else if (wasMovingRight == true)
+            {
+                acceleration.X = GameState.friction;
+            }
+
+            direction.Normalize();
+            velocity += direction * acceleration * deltaTime;
+
+            velocity.X = MathHelper.Clamp(velocity.X, -GameState.maxVelocity.X, GameState.maxVelocity.X);
+            velocity.Y = MathHelper.Clamp(velocity.Y, -GameState.maxVelocity.Y, GameState.maxVelocity.Y);
+
+            Position += velocity * deltaTime;
 
         }
 
