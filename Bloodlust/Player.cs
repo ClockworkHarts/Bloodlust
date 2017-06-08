@@ -20,6 +20,8 @@ namespace Bloodlust
         public Vector2 velocity = Vector2.Zero;
         public Vector2 direction = Vector2.Zero;
         public Vector2 scale = new Vector2(1, 1);
+       
+
 
         public Vector2 Position
         {
@@ -103,16 +105,26 @@ namespace Bloodlust
             }
             else if (wasMovingRight == true)
             {
-                acceleration.X = GameState.friction;
+                acceleration.X = -GameState.friction;
             }
 
             direction.Normalize();
-            velocity += direction * acceleration * deltaTime;
+            velocity += acceleration * deltaTime;
 
             velocity.X = MathHelper.Clamp(velocity.X, -GameState.maxVelocity.X, GameState.maxVelocity.X);
             velocity.Y = MathHelper.Clamp(velocity.Y, -GameState.maxVelocity.Y, GameState.maxVelocity.Y);
 
             Position += velocity * deltaTime;
+
+            if ((wasMovingLeft && (velocity.X > 0)) || (wasMovingRight && (velocity.X < 0)))
+            {
+                velocity.X = 0;
+            }
+
+            if ((wasMovingUp && (velocity.X > 0)) || (wasMovingDown && (velocity.X < 0)))
+            {
+                velocity.Y = 0;
+            }
 
         }
 

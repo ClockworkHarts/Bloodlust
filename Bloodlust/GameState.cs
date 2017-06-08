@@ -31,17 +31,19 @@ namespace Bloodlust
         public static float meter = tile;
         public static Vector2 maxVelocity = new Vector2(meter * 15, meter * 15);
         public static float acceleration = (maxVelocity.X * 2);
-        public static float friction = (maxVelocity.X * 6);
+        public static float friction = (maxVelocity.X * 8);
         public float deltaTime;
 
         //debugging stuff
-        Texture2D debugmap;
+        
 
         
         public GameState() : base()
         {
-
+            
         }
+
+        
 
         public override void Update(ContentManager Content, GameTime gameTime)
         {
@@ -52,11 +54,11 @@ namespace Bloodlust
             {
                 isLoaded = true;
                 font = Content.Load<SpriteFont>("Arial");
-                debugmap = Content.Load<Texture2D>("debug");
                 player.Load(Content);
                 player.Position = new Vector2(100, 100);
                 player.scale = new Vector2(1000, 1000);
- 
+
+
             }
 
             player.Update(deltaTime);
@@ -73,7 +75,6 @@ namespace Bloodlust
         {
             spriteBatch.Begin();
             //spriteBatch.DrawString(font, "Game State", new Vector2(200, 200), Color.White);
-            //spriteBatch.Draw(debugmap, Vector2.Zero, Color.White);
             player.Draw(spriteBatch);
             spriteBatch.End();
         }
