@@ -21,7 +21,11 @@ namespace Bloodlust
         //general
 
         //player
-        Player player = new Player();
+        public Player player = new Player();
+
+        //NPCs
+        List<NPC> Batches = new List<NPC>();
+        
 
         //tiles 
         public Texture2D dirtTile;
@@ -45,6 +49,16 @@ namespace Bloodlust
             current = this;
         }
 
+        private void LoadNPCs(int numberOfNPCs, int RectX, int RectY, int RectWidth, int RectHeight, Color colour)
+        {
+            NPC Batch = new NPC();
+            Batch.batchNumber = numberOfNPCs;
+            Batch.CreateNPCLocation(RectX, RectY, RectWidth, RectHeight);
+            Batch.colour = colour;
+            Batches.Add(Batch);
+
+        }
+
         
 
         public override void Update(ContentManager Content, GameTime gameTime)
@@ -63,6 +77,16 @@ namespace Bloodlust
                 player.Load(Content);
                 player.Position = new Vector2(10, 10);
                 player.scale = new Vector2(1000, 1000);
+
+                //NPCs
+                LoadNPCs(5, 10, 10, 300, 300, Color.Blue);
+                LoadNPCs(3, 400, 400, 300, 300, Color.Green);
+                
+                foreach(NPC B in Batches)
+                {
+                    B.Load(Content);
+                }
+                
 
                 //debugging
                 debugMap = Content.Load<Texture2D>("maria");
@@ -92,7 +116,14 @@ namespace Bloodlust
             spriteBatch.Begin(transformMatrix : t);
             //spriteBatch.DrawString(font, "Game State", new Vector2(200, 200), Color.White);
             spriteBatch.Draw(debugMap, new Vector2(0, 0), Color.White);
+
             player.Draw(spriteBatch);
+
+            foreach(NPC B in Batches)
+            {
+                B.Draw(spriteBatch);
+            }
+
             spriteBatch.End();
 
             //GUI below

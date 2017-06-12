@@ -12,7 +12,9 @@ namespace Bloodlust
 {
     class Enemy
     {
-        Sprite sprite = new Sprite();
+        public enum EnemyState { Idle, Patrol, Action, Asleep}
+
+        public Sprite sprite = new Sprite();
 
         public Vector2 velocity = Vector2.Zero;
         public float speed = 0f;

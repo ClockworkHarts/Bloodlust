@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Bloodlust
 {
-    class Player
+    public class Player
     {
         Sprite sprite = new Sprite();
 

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Bloodlust
 {
-    class Sprite
+    public class Sprite
     {
         public Vector2 position;
         public Vector2 offset;
