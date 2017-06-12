@@ -1,4 +1,3 @@
-D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\debug.xnb
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\Tile32.xnb
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\Tile64.xnb
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Bloodlust.exe
@@ -27,3 +26,7 @@ D:\AIE BACKUP\Bloodlust\Bloodlust\obj\x86\Debug\Bloodlust.csprojResolveAssemblyR
 D:\AIE BACKUP\Bloodlust\Bloodlust\obj\x86\Debug\Bloodlust.exe
 D:\AIE BACKUP\Bloodlust\Bloodlust\obj\x86\Debug\Bloodlust.pdb
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\Arial.xnb
+D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\MonoGame.Extended.dll
+D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Newtonsoft.Json.dll
+D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\maria.xnb

@@ -13,8 +13,6 @@ namespace Bloodlust
 {
     class Player
     {
-        GameState gamestate = null;
-
         Sprite sprite = new Sprite();
 
         public Vector2 velocity = Vector2.Zero;
@@ -65,7 +63,7 @@ namespace Bloodlust
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) == true)
             {
-                direction.Y = -100;
+                //direction.Y = -100;   currently unused
                 acceleration.Y = -GameState.acceleration;
                 //add in some code to animated texture and sprite to allow for vertical flipping
 
@@ -77,7 +75,7 @@ namespace Bloodlust
 
            if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
             {
-                direction.X = -100;
+                //direction.X = -100;     currently unused
                 acceleration.X = -GameState.acceleration;
                 sprite.SetFlipped(true);
             }
@@ -88,7 +86,7 @@ namespace Bloodlust
 
            if (Keyboard.GetState().IsKeyDown(Keys.S) == true)
             {
-                direction.Y = 100;
+                //direction.Y = 100;    currently unused 
                 acceleration.Y = GameState.acceleration;
                 // add in some code for vertical flipping
             }
@@ -99,7 +97,7 @@ namespace Bloodlust
 
            if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
-                direction.X = 100;
+                //direction.X = 100;    currently unused
                 acceleration.X = GameState.acceleration;
                 sprite.SetFlipped(false);
             }
@@ -108,7 +106,7 @@ namespace Bloodlust
                 acceleration.X = -GameState.friction;
             }
 
-            direction.Normalize();
+            //direction.Normalize();   currently unused
             velocity += acceleration * deltaTime;
 
             velocity.X = MathHelper.Clamp(velocity.X, -GameState.maxVelocity.X, GameState.maxVelocity.X);
