@@ -18,6 +18,8 @@ namespace Bloodlust
         public Color colour;
         Random random = new Random();
         Rectangle NPCLocation = new Rectangle();
+        
+        
 
 
         //will create a NPC Location rectangle in which NPCs reside when not patrolling
@@ -45,8 +47,8 @@ namespace Bloodlust
             Enemy enemy = new Enemy();
             enemy.Load(Content, "Tile32", 1, 0);
             enemy.Position = NPCPosition();
-            enemy.speed = 
             enemy.sprite.colour = colour;
+            enemy.speed = random.Next(30, 80);
             NPCs.Add(enemy);
         }
       
@@ -61,9 +63,88 @@ namespace Bloodlust
 
         }
 
+
+        private void IdleTimer(float deltaTime)
+        {
+            foreach(Enemy NPC in NPCs)
+            {
+                if (NPC.idleTimer > 0)
+                {
+                    NPC.idleTimer -= deltaTime;
+                }
+                
+                if (NPC.idleTimer < 0)
+                {
+                    NPC.idleTimer = 0;
+                }
+
+                if (NPC.idleTimer == 0)
+                {
+                    break;
+                }
+            }
+        }
+
+        private bool CheckCollisionsIdle(Rectangle target, Rectangle bounds)
+        {
+            if(GameState.current.IsCollidingRectangle(target, bounds) == true)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        
+        public void UpdateIdle(float deltaTime)
+        {
+            foreach(Enemy NPC in NPCs)
+            {
+                if (NPC.hasTargetPosition == false && NPC.idleTimer == 0)
+                {
+                    NPC.targetPosition = new Vector2((random.Next((NPCLocation.X), (NPCLocation.X + NPCLocation.Width))), (random.Next((NPCLocation.Y), (NPCLocation.Y + NPCLocation.Height))));
+                    NPC.hasTargetPosition = true;
+                }
+
+                if(NPC.hasTargetPosition == true)
+                {
+                    NPC.targetRectangle = new Rectangle((int)NPC.targetPosition.X - 16, (int)NPC.targetPosition.Y - 16, 32, 32);  //minus 16 for offset
+                    NPC.velocity = NPC.targetPosition - NPC.Position;
+                    NPC.velocity.Normalize();
+                    NPC.Position += NPC.velocity * NPC.speed * deltaTime;
+
+
+                    if (CheckCollisionsIdle(NPC.targetRectangle, NPC.Bounds) == true)
+                    {
+                        NPC.idleTimer = random.Next(2, 7);
+                        NPC.hasTargetPosition = false;
+                        NPC.velocity = Vector2.Zero;
+                        NPC.targetRectangle = Rectangle.Empty;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public void UpdatePatrol()
+        {
+
+        }
+
+        public void UpdateAttack()
+        {
+
+        }
+
+        public void UpdateSleep()
+        {
+
+        }
+
         public void Update(float deltaTime)
         {
-            
+            UpdateIdle(deltaTime);
+            IdleTimer(deltaTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)

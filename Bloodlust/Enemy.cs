@@ -16,22 +16,21 @@ namespace Bloodlust
 
         public Sprite sprite = new Sprite();
 
+        //Vectors
         public Vector2 velocity = Vector2.Zero;
-        public float speed = 0f;
         public Vector2 scale = new Vector2(1, 1);
-        public float combatRadius = 0f;
-        public float detectionRadius = 0f;
+        public Vector2 targetPosition = Vector2.Zero;
         public Vector2 Position
         {
             get { return sprite.position; }
             set { sprite.position = value; }
         }
 
-        public Rectangle Bounds
-        {
-            get { return sprite.Bounds; }
-        }
-
+        //Floats
+        public float speed = 0f;
+        public float combatRadius = 0f;
+        public float detectionRadius = 0f;
+        public float idleTimer = 0f;
         public float CombatRadius()
         {
             float enemyRadius = Math.Min(Bounds.Height, Bounds.Width);
@@ -43,6 +42,18 @@ namespace Bloodlust
             float enemyRadius = Math.Min(Bounds.Height, Bounds.Width);
             return enemyRadius + detectionRadius;
         }
+
+        //Bools
+        public bool hasTargetPosition = false;
+
+        //Rectangles
+        public Rectangle targetRectangle = Rectangle.Empty;
+        public Rectangle Bounds
+        {
+            get { return sprite.Bounds; }
+        }
+
+        
 
 
         public void Load(ContentManager Content, string texture, int frameCount, int framesPerSec)

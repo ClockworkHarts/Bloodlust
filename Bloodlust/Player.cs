@@ -15,17 +15,32 @@ namespace Bloodlust
     {
         Sprite sprite = new Sprite();
 
+        //Vectors
         public Vector2 velocity = Vector2.Zero;
         public Vector2 direction = Vector2.Zero;
         public Vector2 scale = new Vector2(1, 1);
-       
-
-
         public Vector2 Position
         {
             set { sprite.position = value; }
             get { return sprite.position; }
         }
+
+        //Floats
+        public float Radius()
+        {
+            float radius = Math.Min(Bounds.Height, Bounds.Width);
+            return radius;
+        }
+
+        //Bools
+
+        //Rectangles
+        public Rectangle Bounds
+        {
+            get { return sprite.Bounds; }
+        }
+
+        
 
         public void Load(ContentManager Content)
         {
@@ -35,16 +50,7 @@ namespace Bloodlust
             sprite.colour = Color.Red;
         }
 
-        public Rectangle Bounds
-        {
-            get { return sprite.Bounds; }
-        }
-
-        public float Radius()
-        {
-            float radius = Math.Min(Bounds.Height, Bounds.Width);
-            return radius;
-        }
+        
 
         public void Update(float deltaTime)
         {

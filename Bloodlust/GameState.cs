@@ -24,7 +24,10 @@ namespace Bloodlust
         public Player player = new Player();
 
         //NPCs
-        List<NPC> Batches = new List<NPC>();
+        //NPC class is a group of enemies with the same home location
+        //Batches list is a list of NPCS, or a list of groups of enemies
+        List<NPC> Batches = new List<NPC>();     
+                                                        
         
 
         //tiles 
@@ -59,6 +62,30 @@ namespace Bloodlust
 
         }
 
+        private void Load(ContentManager Content, GameTime gameTime)
+        {
+            //general
+            font = Content.Load<SpriteFont>("Arial");
+
+            //player
+            player.Load(Content);
+            player.Position = new Vector2(10, 10);
+            player.scale = new Vector2(1000, 1000);
+
+            //NPCs
+            LoadNPCs(5, 10, 10, 300, 300, Color.Blue);
+            LoadNPCs(3, 400, 400, 300, 300, Color.Green);
+
+            foreach (NPC B in Batches)
+            {
+                B.Load(Content);
+            }
+
+
+            //debugging
+            debugMap = Content.Load<Texture2D>("maria");
+        }
+
         
 
         public override void Update(ContentManager Content, GameTime gameTime)
@@ -69,32 +96,15 @@ namespace Bloodlust
             if (isLoaded == false)
             {
                 isLoaded = true;
-
-                //general
-                font = Content.Load<SpriteFont>("Arial");
-
-                //player
-                player.Load(Content);
-                player.Position = new Vector2(10, 10);
-                player.scale = new Vector2(1000, 1000);
-
-                //NPCs
-                LoadNPCs(5, 10, 10, 300, 300, Color.Blue);
-                LoadNPCs(3, 400, 400, 300, 300, Color.Green);
-                
-                foreach(NPC B in Batches)
-                {
-                    B.Load(Content);
-                }
-                
-
-                //debugging
-                debugMap = Content.Load<Texture2D>("maria");
-
-
+                Load(Content, gameTime);
             }
 
             player.Update(deltaTime);
+            foreach(NPC B in Batches)
+            {
+                B.Update(deltaTime);
+            }
+
             Game1.current.camera.Position = player.Position - new Vector2(Game1.current.ScreenWidth / 2, Game1.current.ScreenHeight / 2);
 
 
@@ -109,10 +119,7 @@ namespace Bloodlust
         {
 
             var t = Game1.current.camera.GetViewMatrix();
-            //here i am drawing in random noise to see if you can still see the player movement 
-            //but we need to draw the map we generate in here
-
-
+            
             spriteBatch.Begin(transformMatrix : t);
             //spriteBatch.DrawString(font, "Game State", new Vector2(200, 200), Color.White);
             spriteBatch.Draw(debugMap, new Vector2(0, 0), Color.White);
@@ -136,6 +143,30 @@ namespace Bloodlust
         {
             font = null;
             isLoaded = false;
+        }
+
+        public bool IsCollidingCircle(Vector2 position1, float radius1, Vector2 position2, float radius2)
+        {
+            Vector2 distance = position2 - position1;
+
+            if (distance.Length() < radius1 + radius2)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsCollidingRectangle(Rectangle rect1, Rectangle rect2)
+        {
+            if (rect1.X + rect1.Width < rect2.X ||
+                rect1.X > rect2.X + rect2.Width ||
+                rect1.Y + rect1.Height < rect2.Y ||
+                rect1.Y > rect2.Y + rect2.Height)
+            {
+                
+                return false;
+            }
+            return true;
         }
     }
 }
