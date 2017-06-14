@@ -77,17 +77,12 @@ namespace Bloodlust
                 {
                     NPC.idleTimer = 0;
                 }
-
-                if (NPC.idleTimer == 0)
-                {
-                    break;
-                }
             }
         }
 
         private bool CheckCollisionsIdle(Rectangle target, Rectangle bounds)
         {
-            if(GameState.current.IsCollidingRectangle(target, bounds) == true)
+            if (GameState.current.IsCollidingRectangle(target, bounds) == true)
             {
                 return true;
             }
@@ -95,7 +90,7 @@ namespace Bloodlust
             return false;
         }
 
-        
+
         public void UpdateIdle(float deltaTime)
         {
             foreach(Enemy NPC in NPCs)

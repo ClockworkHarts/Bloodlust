@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using MonoGame.Extended.ViewportAdapters;
 
+public enum EnemyState { Idle, Patrol, Action, Asleep }
+public enum TileType { Dirt, Stone, Water };
 
 namespace Bloodlust
 {
@@ -51,9 +53,9 @@ namespace Bloodlust
             AIE.StateManager.PushState("SPLASH");
 
             //camera
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, ScreenWidth, ScreenHeight);
+            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, ScreenWidth*2, ScreenHeight*2);
             camera = new Camera2D(viewportAdapter);
-            camera.Position = new Vector2(ScreenWidth / 2, ScreenHeight / 2);
+            camera.Position = new Vector2(ScreenWidth, ScreenHeight);
             
 
         }
@@ -70,9 +72,6 @@ namespace Bloodlust
                 Exit();
 
             AIE.StateManager.Update(Content, gameTime);
-
-            
-
 
             base.Update(gameTime);
         }

@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Input;using MonoGame.Extended.ViewportAdapters;using MonoGame.Extended;
+using Microsoft.Xna.Framework.Input;
+using MonoGame.Extended.ViewportAdapters;
+using MonoGame.Extended;
+
 
 namespace Bloodlust
 {
@@ -20,6 +23,9 @@ namespace Bloodlust
 
         //general
 
+        //Map
+        public Map map = new Map();
+
         //player
         public Player player = new Player();
 
@@ -27,14 +33,7 @@ namespace Bloodlust
         //NPC class is a group of enemies with the same home location
         //Batches list is a list of NPCS, or a list of groups of enemies
         List<NPC> Batches = new List<NPC>();     
-                                                        
-        
-
-        //tiles 
-        public Texture2D dirtTile;
-        public Texture2D stoneTile;
-        public Texture2D waterTile;
-
+       
         //public gamewide variables
         public static float tile = 64;
         public static float meter = tile;
@@ -42,16 +41,10 @@ namespace Bloodlust
         public static float acceleration = (maxVelocity.X * 2);
         public static float friction = (maxVelocity.X * 8);
         public float deltaTime;
+        
 
         //debugging stuff
         Texture2D debugMap;
-
-        
-        public GameState() : base()
-        {
-            current = this;
-        }
-
         private void LoadNPCs(int numberOfNPCs, int RectX, int RectY, int RectWidth, int RectHeight, Color colour)
         {
             NPC Batch = new NPC();
@@ -64,6 +57,7 @@ namespace Bloodlust
 
         private void Load(ContentManager Content, GameTime gameTime)
         {
+            current = this;
             //general
             font = Content.Load<SpriteFont>("Arial");
 
@@ -81,6 +75,8 @@ namespace Bloodlust
                 B.Load(Content);
             }
 
+            //map
+            map.Load(Content);
 
             //debugging
             debugMap = Content.Load<Texture2D>("maria");
@@ -105,7 +101,7 @@ namespace Bloodlust
                 B.Update(deltaTime);
             }
 
-            Game1.current.camera.Position = player.Position - new Vector2(Game1.current.ScreenWidth / 2, Game1.current.ScreenHeight / 2);
+            Game1.current.camera.Position = player.Position - new Vector2(Game1.current.ScreenWidth, Game1.current.ScreenHeight);
 
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Enter) == true)
@@ -124,12 +120,15 @@ namespace Bloodlust
             //spriteBatch.DrawString(font, "Game State", new Vector2(200, 200), Color.White);
             spriteBatch.Draw(debugMap, new Vector2(0, 0), Color.White);
 
+            map.Draw(spriteBatch);
+
             player.Draw(spriteBatch);
 
             foreach(NPC B in Batches)
             {
                 B.Draw(spriteBatch);
             }
+
 
             spriteBatch.End();
 

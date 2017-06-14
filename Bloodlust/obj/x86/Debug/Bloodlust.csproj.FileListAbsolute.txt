@@ -30,3 +30,35 @@ D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\MonoGame.Extended.dll
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Newtonsoft.Json.dll
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Newtonsoft.Json.xml
 D:\AIE BACKUP\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\maria.xnb
+L:\Bloodlust\Bloodlust\obj\x86\Debug\Bloodlust.exe
+L:\Bloodlust\Bloodlust\obj\x86\Debug\Bloodlust.pdb
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\Arial.xnb
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\maria.xnb
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\Tile32.xnb
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Content\Tile64.xnb
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Bloodlust.exe
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Bloodlust.pdb
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\MonoGame.Extended.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\MonoGame.Framework.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Newtonsoft.Json.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.XInput.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\MonoGame.Framework.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\Newtonsoft.Json.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.XInput.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+L:\Bloodlust\Bloodlust\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+L:\Bloodlust\Bloodlust\obj\x86\Debug\Bloodlust.csprojResolveAssemblyReference.cache

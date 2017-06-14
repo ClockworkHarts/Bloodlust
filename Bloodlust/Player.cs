@@ -113,7 +113,7 @@ namespace Bloodlust
             }
 
             //direction.Normalize();   currently unused
-            velocity += acceleration * deltaTime;
+            velocity += acceleration * deltaTime; 
 
             velocity.X = MathHelper.Clamp(velocity.X, -GameState.maxVelocity.X, GameState.maxVelocity.X);
             velocity.Y = MathHelper.Clamp(velocity.Y, -GameState.maxVelocity.Y, GameState.maxVelocity.Y);

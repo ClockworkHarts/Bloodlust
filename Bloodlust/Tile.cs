@@ -16,28 +16,10 @@ namespace Bloodlust
 
     class Tile
     {
-        public enum TileType { Dirt, Stone, Water };
+        public TileType type;
 
-        Sprite sprite = new Sprite();
-        Texture2D texture = null;
+        public Vector2 position = Vector2.Zero;
 
-        public Vector2 Position
-        {
-            get
-            {
-                return sprite.position;
-            }
-
-            set
-            {
-                sprite.position = value;
-            }
-        }
-
-        public void Load(ContentManager Content)
-        {
-           
-        }
-
+       
     }
 }

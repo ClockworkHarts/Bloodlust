@@ -8,11 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace Bloodlust
 {
     class Enemy
     {
-        public enum EnemyState { Idle, Patrol, Action, Asleep}
+        
 
         public Sprite sprite = new Sprite();
 
