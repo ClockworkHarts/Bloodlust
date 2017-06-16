@@ -42,7 +42,6 @@ namespace Bloodlust
         {
             animations.Add(animation);
             animationOffsets.Add(new Vector2(xOffset, yOffset));
-            animation.Scale = scale;
         }
 
         public void Update(float deltaTime)

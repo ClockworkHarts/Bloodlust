@@ -64,7 +64,7 @@ namespace Bloodlust
             //player
             player.Load(Content);
             player.Position = new Vector2(10, 10);
-            player.scale = new Vector2(1000, 1000);
+            player.scale = new Vector2(1, 1);
 
             //NPCs
             LoadNPCs(5, 10, 10, 300, 300, Color.Blue);

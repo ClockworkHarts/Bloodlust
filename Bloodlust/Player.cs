@@ -125,7 +125,7 @@ namespace Bloodlust
                 velocity.X = 0;
             }
 
-            if ((wasMovingUp && (velocity.X > 0)) || (wasMovingDown && (velocity.X < 0)))
+            if ((wasMovingUp && (velocity.Y > 0)) || (wasMovingDown && (velocity.Y < 0)))
             {
                 velocity.Y = 0;
             }

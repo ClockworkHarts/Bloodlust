@@ -4,9 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>L:/Bloodlust/Bloodlust/Content/Tile32.png</File>
-    <File>L:/Bloodlust/Bloodlust/Content/Tile64.png</File>
-    <File>L:/Bloodlust/Bloodlust/Content/Arial.spritefont</File>
-    <File>L:/Bloodlust/Bloodlust/Content/maria.png</File>
+    <File>D:/AIE BACKUP/Bloodlust/Bloodlust/Content/Tile32.png</File>
+    <File>D:/AIE BACKUP/Bloodlust/Bloodlust/Content/Tile64.png</File>
+    <File>D:/AIE BACKUP/Bloodlust/Bloodlust/Content/Arial.spritefont</File>
+    <File>D:/AIE BACKUP/Bloodlust/Bloodlust/Content/maria.png</File>
   </SourceFiles>
 </SourceFileCollection>
