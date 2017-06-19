@@ -13,7 +13,7 @@ namespace Bloodlust
     public class NPC
     {
 
-        List<Enemy> NPCs = new List<Enemy>();
+        public List<Enemy> NPCs = new List<Enemy>();
         public int batchNumber;                       // will be used to specify how many NPCs are spawned in this location batch
         public Color colour;
         Random random = new Random();
@@ -49,6 +49,7 @@ namespace Bloodlust
             enemy.Position = NPCPosition();
             enemy.sprite.colour = colour;
             enemy.speed = random.Next(30, 80);
+            enemy.state = EnemyState.Idle;
             NPCs.Add(enemy);
         }
       
@@ -64,10 +65,8 @@ namespace Bloodlust
         }
 
 
-        private void IdleTimer(float deltaTime)
+        private void IdleTimer(float deltaTime, Enemy NPC)
         {
-            foreach(Enemy NPC in NPCs)
-            {
                 if (NPC.idleTimer > 0)
                 {
                     NPC.idleTimer -= deltaTime;
@@ -77,7 +76,6 @@ namespace Bloodlust
                 {
                     NPC.idleTimer = 0;
                 }
-            }
         }
 
         private bool CheckCollisionsIdle(Rectangle target, Rectangle bounds)
@@ -91,10 +89,8 @@ namespace Bloodlust
         }
 
 
-        public void UpdateIdle(float deltaTime)
+        public void UpdateIdle(float deltaTime, Enemy NPC) 
         {
-            foreach(Enemy NPC in NPCs)
-            {
                 if (NPC.hasTargetPosition == false && NPC.idleTimer == 0)
                 {
                     NPC.targetPosition = new Vector2((random.Next((NPCLocation.X), (NPCLocation.X + NPCLocation.Width))), (random.Next((NPCLocation.Y), (NPCLocation.Y + NPCLocation.Height))));
@@ -115,10 +111,8 @@ namespace Bloodlust
                         NPC.hasTargetPosition = false;
                         NPC.velocity = Vector2.Zero;
                         NPC.targetRectangle = Rectangle.Empty;
-                        break;
                     }
                 }
-            }
         }
 
         public void UpdatePatrol()
@@ -138,8 +132,16 @@ namespace Bloodlust
 
         public void Update(float deltaTime)
         {
-            UpdateIdle(deltaTime);
-            IdleTimer(deltaTime);
+
+            foreach (Enemy NPC in NPCs)
+            {
+                if (NPC.state == EnemyState.Idle)
+                {
+                    UpdateIdle(deltaTime, NPC);
+                    IdleTimer(deltaTime, NPC);
+                }
+            }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

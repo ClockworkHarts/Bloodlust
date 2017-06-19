@@ -22,6 +22,7 @@ namespace Bloodlust
         SpriteFont font = null;
 
         //general
+        Random random = new Random();
 
         //Map
         public Map map = new Map();
@@ -82,6 +83,35 @@ namespace Bloodlust
             debugMap = Content.Load<Texture2D>("maria");
         }
 
+
+        private void UpdatePlayerNPCCollisions(float deltaTime)
+        {
+            foreach (NPC B in Batches)
+            {
+                foreach (Enemy E in B.NPCs)
+                {
+                    if(IsCollidingRectangle(E.Bounds, player.Bounds) == true)
+                    {
+
+                        player.direction = -player.direction;
+                        player.velocity = player.direction * 200;
+
+                        E.idleTimer = random.Next(2, 7);
+                        E.hasTargetPosition = false;
+                        E.velocity = Vector2.Zero;
+                        E.targetRectangle = Rectangle.Empty;
+
+                    }
+                }
+            }
+        }
+
+       
+
+        private void UpdateCollisions(float deltaTime)
+        {
+            UpdatePlayerNPCCollisions(deltaTime);
+        }
         
 
         public override void Update(ContentManager Content, GameTime gameTime)
@@ -100,6 +130,8 @@ namespace Bloodlust
             {
                 B.Update(deltaTime);
             }
+
+            UpdateCollisions(deltaTime);
 
             Game1.current.camera.Position = player.Position - new Vector2(Game1.current.ScreenWidth, Game1.current.ScreenHeight);
 

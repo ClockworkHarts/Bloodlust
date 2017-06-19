@@ -11,11 +11,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Bloodlust
 {
-    class Enemy
+    public class Enemy
     {
         
 
         public Sprite sprite = new Sprite();
+        public EnemyState state = EnemyState.Idle;
 
         //Vectors
         public Vector2 velocity = Vector2.Zero;

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/AIE BACKUP/Bloodlust/Bloodlust/Content/Arial.spritefont</SourceFile>
-  <SourceTime>2016-03-16T13:48:04+10:30</SourceTime>
-  <DestFile>D:/AIE BACKUP/Bloodlust/Bloodlust/Content/bin/Windows/Arial.xnb</DestFile>
-  <DestTime>2017-06-16T11:51:03.8246286+09:30</DestTime>
+  <SourceFile>L:/GitHub/BloodLust/Bloodlust/Bloodlust/Content/Arial.spritefont</SourceFile>
+  <SourceTime>2017-06-14T17:27:44.4730074+09:30</SourceTime>
+  <DestFile>L:/GitHub/BloodLust/Bloodlust/Bloodlust/Content/bin/Windows/Arial.xnb</DestFile>
+  <DestTime>2017-06-19T18:43:39.8765422+09:30</DestTime>
   <Importer>FontDescriptionImporter</Importer>
-  <ImporterTime>2016-03-30T17:06:08+10:30</ImporterTime>
+  <ImporterTime>2016-03-22T08:22:00+10:30</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>
-  <ProcessorTime>2016-03-30T17:06:08+10:30</ProcessorTime>
+  <ProcessorTime>2016-03-22T08:22:00+10:30</ProcessorTime>
   <Parameters>
     <Key>TextureFormat</Key>
     <Value>Compressed</Value>

@@ -72,44 +72,51 @@ namespace Bloodlust
                 //direction.Y = -100;   currently unused
                 acceleration.Y = -GameState.acceleration;
                 //add in some code to animated texture and sprite to allow for vertical flipping
+                direction.Y = -1;
 
             }
-            else if(wasMovingUp == true)
-            {
-                acceleration.Y = GameState.friction;
-            }
-
-           if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
-            {
-                //direction.X = -100;     currently unused
-                acceleration.X = -GameState.acceleration;
-                sprite.SetFlipped(true);
-            }
-            else if (wasMovingLeft == true)
-            {
-                acceleration.X = GameState.friction;
-            }
-
-           if (Keyboard.GetState().IsKeyDown(Keys.S) == true)
+            else if (Keyboard.GetState().IsKeyDown(Keys.S) == true)
             {
                 //direction.Y = 100;    currently unused 
                 acceleration.Y = GameState.acceleration;
                 // add in some code for vertical flipping
+                direction.Y = 1;
+            }
+            else if(wasMovingUp == true)
+            {
+                acceleration.Y = GameState.friction;
+                direction.Y = 0;
             }
             else if (wasMovingDown == true)
             {
                 acceleration.Y = -GameState.friction;
+                direction.Y = 0;
             }
 
-           if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
+            {
+                //direction.X = -100;     currently unused
+                acceleration.X = -GameState.acceleration;
+                sprite.SetFlipped(true);
+                direction.X = -1;
+            }
+            else if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
                 //direction.X = 100;    currently unused
                 acceleration.X = GameState.acceleration;
                 sprite.SetFlipped(false);
+                direction.X = 1;
+            }
+            else if (wasMovingLeft == true)
+            {
+                acceleration.X = GameState.friction;
+                direction.X = 0;
             }
             else if (wasMovingRight == true)
             {
                 acceleration.X = -GameState.friction;
+                direction.X = 0;
             }
 
             //direction.Normalize();   currently unused
