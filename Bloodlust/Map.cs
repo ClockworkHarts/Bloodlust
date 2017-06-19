@@ -15,12 +15,13 @@ namespace Bloodlust
         Tile[,] tileMap;
         public int mapWidth = 100;
         public int mapHeight = 100;
-        public Texture2D genericTile;
+        public Texture2D genericTile64;
         public Texture2D dirtTile;
         public Texture2D stoneTile;
         public Texture2D waterTile;
 
-        Tree[,] treeMap;
+        public List<Tree> treeMap = new List<Tree>();
+        public Texture2D genericTile32;
         public Texture2D pineTexture;
         public Texture2D oakTexture;
         public Texture2D spruceTexture;
@@ -30,15 +31,23 @@ namespace Bloodlust
 
         public void Load(ContentManager Content)
         {
-            genericTile = Content.Load<Texture2D>("Tile64");
+            genericTile64 = Content.Load<Texture2D>("Tile64");
+            genericTile32 = Content.Load<Texture2D>("Tile32");
 
             GenerateMap();
         }
         public void GenerateMap()
         {
+            //making the tile map
             tileMap = new Tile[mapWidth, mapHeight];
             SimplexNoise1 noise = new SimplexNoise1();
             noise.setSeed(531594);
+
+            //making da trees
+            SimplexNoise1 treeNoise = new SimplexNoise1();
+            treeNoise.setSeed(515438);
+
+            //setting da tile map
             for (int x = 0; x < mapWidth; x++)
             {
                 for (int y = 0; y < mapHeight; y++)
@@ -54,42 +63,37 @@ namespace Bloodlust
                     }
                     else if (h >= 35)
                     {
-                        //is dirt
+
+                        //makes dirt tile
                         tileMap[x, y].type = TileType.Dirt;
 
-                        //making da trees
-                        /*treeMap = new Tree[mapWidth, mapHeight];
-                        SimplexNoise1 treeNoise = new SimplexNoise1();
-                        treeNoise.setSeed(515438);
-                        for (int xtree = 0; xtree < mapHeight; xtree++)
+                        //for trees
+                        float i = treeNoise.getPerlinNoise(x, y, 100, 32);
+                        if (i < 50)
+                            continue;
+                        
+                        Tree tree = new Tree();
+                        tree.position = new Vector2(((x * 64) + 32), ((y * 64) + 32));
+
+                        
+                        if (i >= 85)
                         {
-                            for (int ytree = 0; ytree < mapWidth; ytree++)
-                            {
-                                treeMap[xtree, ytree] = new Tree();
-                                treeMap[xtree, ytree].position = new Vector2(((xtree * 64) - 32), ((ytree * 64) - 32));
+                            tree.type = TreeType.Cedar;
+                        }
+                        else if (i >= 70)
+                        {
+                            tree.type = TreeType.Oak;
+                        }
+                        else if (i >= 55)
+                        {
+                            tree.type = TreeType.Pine;
+                        }
+                        else if (i >= 50)
+                        {
+                            tree.type = TreeType.Spruce;
+                        }
 
-                                float i = treeNoise.getPerlinNoise(xtree, ytree, 100, 128);
-                                if (i >= 80)
-                                {
-                                    treeMap[xtree, ytree].type = TreeType.Cedar;
-                                }
-
-                                if (i >= 60)
-                                {
-                                    treeMap[xtree, ytree].type = TreeType.Oak;
-                                }
-
-                                if (i >= 40)
-                                {
-                                    treeMap[xtree, ytree].type = TreeType.Pine;
-                                }
-
-                                if (i >= 20)
-                                {
-                                    treeMap[xtree, ytree].type = TreeType.Spruce;
-                                }
-                            }
-                        }*/
+                        treeMap.Add(tree);
                         
                     }
                     else if (h >= 0)
@@ -115,46 +119,45 @@ namespace Bloodlust
                     switch (tileMap[x, y].type)
                     {
                         case TileType.Dirt:
-                            spriteBatch.Draw(genericTile, tileMap[x, y].position, Color.SaddleBrown);
+                            spriteBatch.Draw(genericTile64, tileMap[x, y].position, Color.SaddleBrown);
                             break;
 
                         case TileType.Water:
-                            spriteBatch.Draw(genericTile, tileMap[x, y].position, Color.Blue);
+                            spriteBatch.Draw(genericTile64, tileMap[x, y].position, Color.Blue);
                             break;
 
                         case TileType.Stone:
-                            spriteBatch.Draw(genericTile, tileMap[x, y].position, Color.Pink);
+                            spriteBatch.Draw(genericTile64, tileMap[x, y].position, Color.Pink);
                             break;
           
                     }
 
                 }
             }
-
-            /*for (int xtree = 0; xtree < mapWidth; xtree++)
+            foreach(Tree tree in treeMap)
             {
-                for (int ytree = 0; ytree < mapHeight; ytree++)
+                int x = (int)tree.position.X / 64;
+                int y = (int)tree.position.Y / 64;
+                switch (tree.type)
                 {
-                    switch (treeMap[xtree, ytree].type)
-                    {
-                        case TreeType.Cedar:
-                            spriteBatch.Draw(genericTile, treeMap[xtree, ytree].position, Color.GreenYellow);
-                            break;
+                    case TreeType.Cedar:
+                        spriteBatch.Draw(genericTile32, tree.position, Color.GreenYellow);
+                        break;
 
-                        case TreeType.Oak:
-                            spriteBatch.Draw(genericTile, treeMap[xtree, ytree].position, Color.LawnGreen);
-                            break;
+                    case TreeType.Oak:
+                        spriteBatch.Draw(genericTile32, tree.position, Color.LawnGreen);
+                        break;
 
-                        case TreeType.Pine:
-                            spriteBatch.Draw(genericTile, treeMap[xtree, ytree].position, Color.ForestGreen);
-                            break;
+                    case TreeType.Pine:
+                        spriteBatch.Draw(genericTile32, tree.position, Color.ForestGreen);
+                        break;
 
-                        case TreeType.Spruce:
-                            spriteBatch.Draw(genericTile, treeMap[xtree, ytree].position, Color.Green);
-                            break;
-                    }
+                    case TreeType.Spruce:
+                        spriteBatch.Draw(genericTile32, tree.position, Color.Green);
+                        break;
                 }
-            }*/
+            }
+            
         }
 
     }
