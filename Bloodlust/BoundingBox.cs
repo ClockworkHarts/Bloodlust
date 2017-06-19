@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+using Microsoft.Xna;
+using Microsoft.Xna.Framework; 
 
 namespace Bloodlust
 {
-    public class Tree
+    class BoundingBox
     {
-        public TreeType type;
 
-        public Vector2 position = Vector2.Zero;
     }
 }
