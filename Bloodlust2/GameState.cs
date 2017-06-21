@@ -24,6 +24,9 @@ namespace Bloodlust2
         //general
         Random random = new Random();
 
+        //Textures
+        Texture2D generic16;
+
         //Map
         public Map map = new Map();
 
@@ -59,13 +62,17 @@ namespace Bloodlust2
         private void Load(ContentManager Content, GameTime gameTime)
         {
             current = this;
+
             //general
             font = Content.Load<SpriteFont>("Arial");
+            generic16 = Content.Load<Texture2D>("Tile16");
 
             //player
             player.Load(Content);
             player.Position = new Vector2(10, 10);
             player.scale = new Vector2(1, 1);
+            player.health = 100;
+            player.maxHealth = 100;
 
             //NPCs
             LoadNPCs(5, 10, 10, 300, 300, Color.Blue);
@@ -166,7 +173,11 @@ namespace Bloodlust2
 
             //GUI below
             spriteBatch.Begin();
-            
+
+            //player health bar
+            spriteBatch.Draw(generic16, new Vector2(50, 50), null, null, Vector2.Zero, 0f, new Vector2((int)(player.maxHealth / 10), 1), Color.Black, SpriteEffects.None, 0f);
+            spriteBatch.Draw(generic16, new Vector2(50, 50), null, null, Vector2.Zero, 0f, new Vector2((int)(player.health / 10), 1), Color.Red, SpriteEffects.None, 0f);
+                    
             spriteBatch.End();
         }
 

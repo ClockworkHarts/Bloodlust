@@ -15,6 +15,9 @@ namespace Bloodlust2
     {
         Sprite sprite = new Sprite();
 
+        //debugging dem buggos
+        public bool isPressed = false;
+
         //Vectors
         public Vector2 velocity = Vector2.Zero;
         public Vector2 direction = Vector2.Zero;
@@ -26,6 +29,8 @@ namespace Bloodlust2
         }
 
         //Floats
+        public float health;
+        public float maxHealth;
         public float Radius()
         {
             float radius = Math.Min(Bounds.Height, Bounds.Width);
@@ -33,12 +38,17 @@ namespace Bloodlust2
         }
 
         //Bools
+        public bool isAttacking = false;
+
 
         //Rectangles
         public Rectangle Bounds
         {
             get { return sprite.Bounds; }
         }
+
+        //General
+        public PlayerWeapon equipType = PlayerWeapon.Unarmed;
 
         
 
@@ -58,7 +68,20 @@ namespace Bloodlust2
             sprite.Update(deltaTime);
         }
 
-        private void UpdateInput(float deltaTime)
+        private void UpdateCombat(float deltaTime)
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) == true && isPressed == false)
+            {
+                isPressed = true;
+                health -= 10;
+            }
+            if (Keyboard.GetState().IsKeyUp(Keys.Enter) == true)
+            {
+                isPressed = false;
+            }
+        }
+
+        private void UpdateMotion(float deltaTime)
         {
             bool wasMovingRight = velocity.X > 0;
             bool wasMovingLeft = velocity.X < 0;
@@ -69,7 +92,6 @@ namespace Bloodlust2
 
             if (Keyboard.GetState().IsKeyDown(Keys.W) == true)
             {
-                //direction.Y = -100;   currently unused
                 acceleration.Y = -GameState.acceleration;
                 //add in some code to animated texture and sprite to allow for vertical flipping
                 direction.Y = -1;
@@ -77,12 +99,11 @@ namespace Bloodlust2
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.S) == true)
             {
-                //direction.Y = 100;    currently unused 
                 acceleration.Y = GameState.acceleration;
                 // add in some code for vertical flipping
                 direction.Y = 1;
             }
-            else if(wasMovingUp == true)
+            else if (wasMovingUp == true)
             {
                 acceleration.Y = GameState.friction;
                 direction.Y = 0;
@@ -96,14 +117,12 @@ namespace Bloodlust2
 
             if (Keyboard.GetState().IsKeyDown(Keys.A) == true)
             {
-                //direction.X = -100;     currently unused
                 acceleration.X = -GameState.acceleration;
                 sprite.SetFlipped(true);
                 direction.X = -1;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.D) == true)
             {
-                //direction.X = 100;    currently unused
                 acceleration.X = GameState.acceleration;
                 sprite.SetFlipped(false);
                 direction.X = 1;
@@ -119,8 +138,7 @@ namespace Bloodlust2
                 direction.X = 0;
             }
 
-            //direction.Normalize();   currently unused
-            velocity += acceleration * deltaTime; 
+            velocity += acceleration * deltaTime;
 
             velocity.X = MathHelper.Clamp(velocity.X, -GameState.maxVelocity.X, GameState.maxVelocity.X);
             velocity.Y = MathHelper.Clamp(velocity.Y, -GameState.maxVelocity.Y, GameState.maxVelocity.Y);
@@ -136,7 +154,12 @@ namespace Bloodlust2
             {
                 velocity.Y = 0;
             }
+        }
 
+        private void UpdateInput(float deltaTime)
+        {
+            UpdateMotion(deltaTime);
+            UpdateCombat(deltaTime);
         }
 
        public void Draw(SpriteBatch spriteBatch)

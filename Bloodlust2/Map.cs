@@ -41,7 +41,7 @@ namespace Bloodlust2
             //making the tile map
             tileMap = new Tile[mapWidth, mapHeight];
             SimplexNoise1 noise = new SimplexNoise1();
-            noise.setSeed(531594);
+            noise.setSeed(01234567895);
 
             //making da trees
             SimplexNoise1 treeNoise = new SimplexNoise1();
@@ -73,7 +73,7 @@ namespace Bloodlust2
                             continue;
                         
                         Tree tree = new Tree();
-                        tree.position = new Vector2(((x * 64) + 32), ((y * 64) + 32));
+                        tree.position = new Vector2(((x * 64) + 16), ((y * 64) + 16));
 
                         
                         if (i >= 85)

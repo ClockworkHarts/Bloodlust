@@ -55,6 +55,7 @@
     <Compile Include="StateManager.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Tree.cs" />
+    <Compile Include="Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=0.6.568.0, Culture=neutral, processorArchitecture=MSIL">
