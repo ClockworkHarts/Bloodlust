@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>L:/GitHub/BloodLust/Bloodlust/Bloodlust/Content/Tile32.png</SourceFile>
-  <SourceTime>2017-06-05T19:21:44.2522545+09:30</SourceTime>
-  <DestFile>L:/GitHub/BloodLust/Bloodlust/Bloodlust/Content/bin/Windows/Tile32.xnb</DestFile>
-  <DestTime>2017-06-19T18:43:39.6535382+09:30</DestTime>
+  <SourceFile>L:/Bloodlust/Bloodlust/Content/Tile32.png</SourceFile>
+  <SourceTime>2017-06-05T19:50:08.7614573+09:30</SourceTime>
+  <DestFile>L:/Bloodlust/Bloodlust/Content/bin/Windows/Tile32.xnb</DestFile>
+  <DestTime>2017-06-19T20:35:58.4275637+09:30</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-22T08:22:00+10:30</ImporterTime>
   <Processor>TextureProcessor</Processor>
